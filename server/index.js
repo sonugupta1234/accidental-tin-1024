@@ -13,7 +13,7 @@ app.get("/",(req,res)=>{
 })
 
 app.use("/user",userRouter);
-app.use("/product",productRoute)
+app.use("/products",productRoute)
 
 connection();
 app.listen(port,()=>{
