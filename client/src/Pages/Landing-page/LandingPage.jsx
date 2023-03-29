@@ -7,6 +7,7 @@ import brandstoBags from "./LandingPageData/brandstoBags";
 import budgetBuys from "./LandingPageData/budgetBuys";
 import grandBrands from "./LandingPageData/grandBrands";
 import omgDeals from "./LandingPageData/omgDeals";
+import shopByCat from "./LandingPageData/shopByCat";
 const settings = {
   dots: true,
   arrows: false,
@@ -152,6 +153,31 @@ const LandingPage = () => {
             }}
           >
             {omgDeals.map((el) => (
+              <Box key={el.id}>
+                <Image src={el.img} alt="" />
+              </Box>
+            ))}
+          </Box>
+        </Box>
+        {/* ============================================================== */}
+        <Box>
+          <Text
+            fontWeight={750}
+            fontSize={{base:'16px',md:"25px",lg:"30px"}}
+            margin={{ base:"20px",lg: "50px 35px" }}
+            color={"gray.700"}
+          >
+   SHOP BY CATEGORY
+          </Text>
+          <Box
+            display={"grid"}
+            gridTemplateColumns={{
+              base: "repeat(3,1fr)",
+              md: "repeat(6,1fr)",
+              lg: "repeat(6,1fr)",
+            }}
+          >
+            {shopByCat.map((el) => (
               <Box key={el.id}>
                 <Image src={el.img} alt="" />
               </Box>
