@@ -10,7 +10,12 @@ const ProductSchema=mongoose.Schema({
     rating:{type:Number, require:true},
     rating_count:{type:String, require:true},
     images: {type:String, require:true},
-    size:{type:Array , require:true}  
+    size:{type:Array , require:true} ,
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: "user",
+        required: true,
+      },  
 
 })
 
