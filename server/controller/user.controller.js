@@ -4,7 +4,7 @@ const JWT=require("jsonwebtoken");
 const User=require("../model/user.model")
 exports.registerUser=async(req,res)=>{
     try {
-        const { name, email, password, gender, city, age } = req.body;
+        const { name, email, password, gender, number } = req.body;
         //validations
         if (!name) {
           return res.send({ error: "Name is Required" });
@@ -18,12 +18,10 @@ exports.registerUser=async(req,res)=>{
         if (!gender) {
           return res.send({ message: "gender no is Required" });
         }
-        if (!city) {
-          return res.send({ message: "city is Required" });
+        if (!number) {
+          return res.send({ message: "mobile no. is Required" });
         }
-        if (!age) {
-          return res.send({ message: "age is Required" });
-        }
+        
         //check user
         const exisitingUser = await User.findOne({ email });
         //exisiting user
@@ -40,9 +38,8 @@ exports.registerUser=async(req,res)=>{
           name,
           email,
           gender,
-          city,
+          number,
           password: hashedPassword,
-          age,
         }).save();
     
         res.status(201).send({
@@ -98,7 +95,7 @@ exports.loginUser=async(req,res)=>{
             name: user.name,
             email: user.email,
             gender: user.gender,
-            city: user.city,
+           number:user.number,
             role: user.role,
           },
           token,
