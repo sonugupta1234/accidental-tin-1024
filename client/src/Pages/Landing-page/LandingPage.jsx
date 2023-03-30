@@ -29,7 +29,7 @@ const LandingPage = () => {
           w={{ base: "100%", md: "100%", lg: "98%" }}
           m={"auto"}
           position={"relative"}
-          height={{ base: "280px", md: "400", lg: "500px" }}
+          height={{ base: "280px", md: "400", lg: "550px" }}
           width={"full"}
           overflow={"hidden"}
         >
@@ -51,7 +51,7 @@ const LandingPage = () => {
               <Box key={index} boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}>
                 <Image
                   w={{ base: "100%", md: "100%", lg: "100%" }}
-                  h={{ base: "200px", md: "300px", lg: "450px" }}
+                  h={{ base: "200px", md: "300px", lg: "500px" }}
                   src={url}
                 />
               </Box>
