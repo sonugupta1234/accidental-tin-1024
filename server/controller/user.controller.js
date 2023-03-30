@@ -1,7 +1,9 @@
 const { hashPassword, comparePassword } = require("../helpers/authhelper");
 const JWT=require("jsonwebtoken");
 
-const User=require("../model/user.model")
+const User=require("../model/user.model");
+const ErrorHandler = require("../utils/errorhandler");
+const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 exports.registerUser=async(req,res)=>{
     try {
         const { name, email, password, gender, number } = req.body;
@@ -109,4 +111,47 @@ exports.loginUser=async(req,res)=>{
         });
       }
 }
+
+// {===========================Get all users(admin)==============================}
+exports.getAllUser = catchAsyncErrors(async (req, res, next) => {
+  const users = await User.find();
+
+  res.status(200).json({
+    success: true,
+    users,
+  });
+});
+//{===================== Get single user (admin)=====================}
+exports.getSingleUser = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+
+  if (!user) {
+    return next(
+      new ErrorHandler(`User does not exist with Id: ${req.params.id}`)
+    );
+  }
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
+// // {==========================Delete User --Admin=========================}
+exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findByIdAndDelete(req.params.id);
+
+  if (!user) {
+    return next(
+      new ErrorHandler(`User does not exist with Id: ${req.params.id}`, 400)
+    );
+  }
+
+  res.status(200).json({
+    success: true,
+    message: "User Deleted Successfully",
+  });
+});
+
+
 
