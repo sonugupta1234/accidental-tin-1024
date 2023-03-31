@@ -7,6 +7,7 @@ import brandstoBags from "./LandingPageData/brandstoBags";
 import budgetBuys from "./LandingPageData/budgetBuys";
 import grandBrands from "./LandingPageData/grandBrands";
 import omgDeals from "./LandingPageData/omgDeals";
+import shopByCat from "./LandingPageData/shopByCat";
 const settings = {
   dots: true,
   arrows: false,
@@ -28,7 +29,7 @@ const LandingPage = () => {
           w={{ base: "100%", md: "100%", lg: "98%" }}
           m={"auto"}
           position={"relative"}
-          height={{ base: "280px", md: "400", lg: "500px" }}
+          height={{ base: "280px", md: "400", lg: "550px" }}
           width={"full"}
           overflow={"hidden"}
         >
@@ -50,7 +51,7 @@ const LandingPage = () => {
               <Box key={index} boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}>
                 <Image
                   w={{ base: "100%", md: "100%", lg: "100%" }}
-                  h={{ base: "200px", md: "300px", lg: "450px" }}
+                  h={{ base: "200px", md: "300px", lg: "500px" }}
                   src={url}
                 />
               </Box>
@@ -152,6 +153,31 @@ const LandingPage = () => {
             }}
           >
             {omgDeals.map((el) => (
+              <Box key={el.id}>
+                <Image src={el.img} alt="" />
+              </Box>
+            ))}
+          </Box>
+        </Box>
+        {/* ============================================================== */}
+        <Box>
+          <Text
+            fontWeight={750}
+            fontSize={{base:'16px',md:"25px",lg:"30px"}}
+            margin={{ base:"20px",lg: "50px 35px" }}
+            color={"gray.700"}
+          >
+   SHOP BY CATEGORY
+          </Text>
+          <Box
+            display={"grid"}
+            gridTemplateColumns={{
+              base: "repeat(3,1fr)",
+              md: "repeat(6,1fr)",
+              lg: "repeat(6,1fr)",
+            }}
+          >
+            {shopByCat.map((el) => (
               <Box key={el.id}>
                 <Image src={el.img} alt="" />
               </Box>
