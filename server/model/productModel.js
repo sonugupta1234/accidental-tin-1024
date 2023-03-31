@@ -9,19 +9,13 @@ const ProductSchema=mongoose.Schema({
     discount:{type:String, require:true},
     rating:{type:Number, require:true},
     rating_count:{type:String, require:true},
-    images: [
-        {
-          public_id: {
-            type: String,
-            required: true,
-          },
-          url: {
-            type: String,
-            required: true,
-          },
-        },
-      ],
-    size:{type:Array , require:true}  
+    images: {type:String, require:true},
+    size:{type:Array , require:true} ,
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: "user",
+        required: true,
+      },  
 
 })
 
