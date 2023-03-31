@@ -11,7 +11,7 @@ import { SignUp } from '../Pages/SignUp';
 const AllRoutes = () => {
   return (
     <>
-  
+     
     <Routes>
      <Route path="/" element={<LandingPage/>} />
        <Route path="/login" element={<Login />} />
