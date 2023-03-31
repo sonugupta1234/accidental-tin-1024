@@ -23,7 +23,7 @@ const settings = {
 const LandingPage = () => {
   return (
     <>
-      <Box w={{ base: "100%", md: "100%", lg: "100%" }} mt={"20px"}>
+      <Box w={{ base: "100%", md: "100%", lg: "100%" }} mt={"70px"}>
         {/* ======================Banner-section========================= */}
         <Box
           w={{ base: "100%", md: "100%", lg: "98%" }}
