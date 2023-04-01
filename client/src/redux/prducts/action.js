@@ -15,11 +15,11 @@ const getProductFailureAction = () => {
   return { type: GET_PRODUCTS_FAILURE };
 };
 
-export const getProducts = (pageNo) => (dispatch) => {
+export const getProducts = (params) => (dispatch) => {
   // console.log("action")
   dispatch(getProductRequestAction);
   axios
-    .get(`https://good-lime-perch-sock.cyclic.app/products/getproducts?page=${pageNo}`)
+    .get(`https://good-lime-perch-sock.cyclic.app/products/getproducts`,params)
     .then((res) => {
       console.log(res)
       dispatch(getProductSuccessAction(res.data));

@@ -6,7 +6,7 @@ const Pagination = ({pageNo, setPageNo}) => {
     const { totalRecord, perPage } = useSelector((state) => state.productReducer);
 
    let noOfBtn = Math.floor((totalRecord/perPage)+1)
-   console.log(noOfBtn)
+  //  console.log(noOfBtn)
 
     function pageset(current){
         setPageNo(current)

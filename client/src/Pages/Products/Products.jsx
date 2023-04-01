@@ -1,10 +1,12 @@
 import {
   Box,
   Checkbox,
+  CheckboxGroup,
   Input,
   Radio,
   RadioGroup,
   Select,
+  Stack,
   Text,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
@@ -12,26 +14,98 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/prducts/action";
 import Pagination from "./Pagination";
 import ProductsCard from "./ProductsCard";
+import { useSearchParams } from "react-router-dom";
 // import ProductsCard from "./ProductsCard";
 
 const Products = () => {
-  const [value, setValue] = useState("1");
-  const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initFilterValues = searchParams.getAll("category");
+  const initBrandValues = searchParams.getAll("brand");
+  const initSortValue = searchParams.getAll("sort");
+  const initOrder = searchParams.getAll("order");
+
+  const [filterValues, setFilterValues] = useState(initFilterValues);
+  const [brand, setBrand] = useState(initBrandValues || []);
+  const [sortValue, setSortValue] = useState(initSortValue);
+  const [order, setOrder] = useState(initOrder);
+
   const [pageNo, setPageNo] = useState(1);
 
-  const { product, isError, isLoding } = useSelector(
-    (state) => state.productReducer
-  );
+  // const { isOpen, onOpen, onClose } = useDisclosure()
+  // const btnRef = useRef()
 
-  console.log(product);
+  const { product, isLoding, isError } = useSelector(
+    (store) => store.productReducer
+  );
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProducts(pageNo));
-  }, [pageNo]);
+    let params = {};
+    if (filterValues.length) params.category = filterValues;
+    if (brand.length) params.brand = brand;
+    if (sortValue) {
+      params._sort = sortValue;
+    }
+    if (sortValue === "rating") {
+      params._order = "desc";
+    } else if (sortValue === "discount") {
+      params._order = "desc";
+    } else if (sortValue === "discounted_priceLTH") {
+      params._sort = "discounted_price";
+      params._order = "asc";
+    } else if (sortValue === "discounted_priceHTL") {
+      params._sort = "discounted_price";
+      params._order = "desc";
+    } else if (sortValue === "rating_countLTH") {
+      params._sort = "rating_count";
+      params._order = "asc";
+    } else if (sortValue === "rating_countHTL") {
+      params._sort = "rating_count";
+      params._order = "desc";
+    }
+    setSearchParams(params);
+  }, [filterValues, setSearchParams, sortValue, order, pageNo, brand]);
 
-  // if (isLoding) {
-  //   <h1>...loding</h1>;
-  // }
+  useEffect(() => {
+    const getProductParam = {
+      params: {
+        category: searchParams.getAll("category"),
+        brand: searchParams.getAll("brand"),
+        page: pageNo,
+        _sort: searchParams.get("_sort"),
+        _order: searchParams.get("_order"),
+      },
+    };
+    console.log("get", getProductParam);
+    dispatch(getProducts(getProductParam));
+  }, [searchParams, dispatch, pageNo]);
+
+  const handleFilterChange = (val) => {
+    if (val === "All") {
+      console.log("all");
+      setFilterValues("");
+    } else {
+      setFilterValues(val);
+    }
+  };
+
+  const handleBrand = (val) => {
+    console.log(val);
+    setBrand(val);
+  };
+
+  const handleClear = () => {
+    setFilterValues([]);
+    // dispatch(getMensData());
+    // onClose();
+  };
+
+  const handlePage = (val) => {
+    setPageNo((prev) => prev + val);
+  };
+
+  // console.log("loading",loadingMen,"error",error);
+
   return (
     <>
       <Box w={{ base: "100%", md: "100%", lg: "100%" }}>
@@ -73,18 +147,42 @@ const Products = () => {
           >
             {/* ================men women boys girls ================= */}
             <RadioGroup
-              onChange={setValue}
-              value={value}
               display={"flex"}
               flexDirection="column"
               borderWidth={"1px"}
               fontWeight={"500"}
               p={"20px"}
+              value={filterValues}
+              onChange={handleFilterChange}
             >
-              <Radio m={"5px"}>Men</Radio>
-              <Radio m={"5px"}>Women</Radio>
-              <Radio m={"5px"}>Boys</Radio>
-              <Radio m={"5px"}>Girls</Radio>
+              <Radio
+                m={"5px"}
+                name="category"
+                value="All"
+              >
+                All
+              </Radio>
+              <Radio
+                m={"5px"}
+                name="category"
+                value="Mens"
+              >
+                Men
+              </Radio>
+              <Radio
+                m={"5px"}
+                name="category"
+                value="Womens"
+              >
+                Women
+              </Radio>
+              <Radio
+                m={"5px"}
+                name="category"
+                value="Child"
+              >
+                Kids
+              </Radio>
             </RadioGroup>
             {/* =================category================ */}
             <Box
@@ -97,7 +195,9 @@ const Products = () => {
                 CATEGORIES
               </Text>
               <Checkbox value={""}> Tshirts</Checkbox>
+              <Checkbox value={""}> Jeans</Checkbox>
               <Checkbox value={""}> Sarees</Checkbox>
+              <Checkbox value={""}> Trousers</Checkbox>
               <Checkbox value={""}> Shirts</Checkbox>
               <Checkbox value={""}> Dresses</Checkbox>
               <Checkbox value={""}> Kurtas</Checkbox>
@@ -118,14 +218,25 @@ const Products = () => {
               <Text fontWeight={"500"} mb={"15px"}>
                 BRAND
               </Text>
-              <Checkbox value={""}> KALINI</Checkbox>
-              <Checkbox value={""}> Roadster</Checkbox>
-              <Checkbox value={""}> H&M</Checkbox>
-              <Checkbox value={""}> Pothys</Checkbox>
-              <Checkbox value={""}> Mitera</Checkbox>
+              {/* <CheckboxGroup colorScheme="blue" value={brand} onChange={handleBrand}></CheckboxGroup>
+              <Checkbox value={"KALINI"} > KALINI</Checkbox>
+              <Checkbox value={"Roadster"}> Roadster</Checkbox>
+              <Checkbox value={"H&M"}> H&M</Checkbox>
+              <Checkbox value={"Pothys"}> Pothys</Checkbox>
+              <Checkbox value={"Mitera"}> Mitera</Checkbox>
               <Checkbox value={""}> max</Checkbox>
               <Checkbox value={""}> HERE&NOW</Checkbox>
               <Checkbox value={""}> GRACIT</Checkbox>
+              <CheckboxGroup/> */}
+              <CheckboxGroup
+                colorScheme="blue"
+                value={brand}
+                onChange={handleBrand}
+              >
+                <Checkbox value={"KALINI"}> KALINI</Checkbox>
+                <Checkbox value={"Roadster"}> Roadster</Checkbox>
+                <Checkbox value={"H&M"}> H&M</Checkbox>
+              </CheckboxGroup>
               <Text color={"red.400"} cursor={"pointer"}>
                 +3204 more
               </Text>
@@ -236,7 +347,11 @@ const Products = () => {
               display="grid"
               gap="30px"
               padding={"10px"}
-              gridTemplateColumns={{base:"repeat(1,1fr)",md:"repeat(3,1fr)",lg:"repeat(5,1fr)"}}
+              gridTemplateColumns={{
+                base: "repeat(1,1fr)",
+                md: "repeat(3,1fr)",
+                lg: "repeat(5,1fr)",
+              }}
             >
               {isLoding ? (
                 <h1>Loading....</h1>
@@ -246,7 +361,7 @@ const Products = () => {
                 product.map((e) => <ProductsCard key={e._id} {...e} />)
               )}
             </Box>
-            <Box >
+            <Box>
               {" "}
               <Pagination pageNo={pageNo} setPageNo={setPageNo} />
             </Box>
@@ -258,17 +373,3 @@ const Products = () => {
 };
 
 export default Products;
-
-// background:#fff;
-// width: 15%;
-// height: 100vh;
-// position: fixed;
-// top: 0;
-// padding-left: 2%;
-// padding-top: 80px;
-
-// <Box borderWidth={"1px"} key={e._id}>
-//   <img src={e.images} alt="furor" />
-// </Box>
-
-// box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
