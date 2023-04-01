@@ -30,24 +30,18 @@ const orderSchema = new mongoose.Schema({
       required: true,
     },
   },
-  orderItems: [
+  cartItems: [
     {
-      name: {
-        type: String,
-        required: true,
-      },
-      price: {
-        type: Number,
-        required: true,
-      },
-      quantity: {
-        type: Number,
-        required: true,
-      },
-      image: {
-        type: String,
-        required: true,
-      },
+      title:{type:String, require:true},
+    brand:{type:String, require:true},
+    category:{type:String, require:true},
+    discounted_price:{type:Number, require:true},
+    strike_price:{type:Number, require:true},
+    discount:{type:String, require:true},
+    rating:{type:Number, require:true},
+    rating_count:{type:String, require:true},
+    images: {type:String, require:true},
+    size:{type:Array , require:true} ,
       product: {
         type: mongoose.Schema.ObjectId,
         ref: "Product",
