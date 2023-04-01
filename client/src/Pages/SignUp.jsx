@@ -20,7 +20,7 @@ export const SignUp = () => {
     const [name,setName]=useState("")
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
-    const [phone,setPhone]=useState("")
+    const [number,setNumber]=useState("")
     const toast=useToast()
     const toast1=useToast()
     
@@ -28,12 +28,12 @@ export const SignUp = () => {
         name: name,
         email: email,
         password: password,
-        phone: phone
+        number: number
       }
 
     const handleSubmit=async()=>{
 
-      axios.post("https://shy-plum-xerus-gown.cyclic.app/user/register", payload)
+      axios.post("https://good-lime-perch-sock.cyclic.app/user/register", payload)
       .then((res)=> toast({
         title: 'Account created.',
         position: 'top',
@@ -68,7 +68,7 @@ export const SignUp = () => {
      <InputGroup>
      
       <InputLeftAddon children='+91' />
-      <Input type='number' placeholder='Enter number' onChange={(e)=>setPhone(e.target.value)}/>
+      <Input type='number' placeholder='Enter number' onChange={(e)=>setNumber(e.target.value)}/>
      </InputGroup>
      <FormLabel>Password</FormLabel>
       <Input type="password" placeholder='Enter Password' onChange={(e)=>setPassword(e.target.value)}/>

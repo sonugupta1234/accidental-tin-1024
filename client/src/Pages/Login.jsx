@@ -30,7 +30,7 @@ export const Login = () => {
 
     const handleSubmit=()=>{
 
-        axios.post("https://shy-plum-xerus-gown.cyclic.app/user/login", payload)
+        axios.post("https://good-lime-perch-sock.cyclic.app/user/login", payload)
         .then((res)=> toast({
           title: 'Sucessfull.',
           position: 'top',

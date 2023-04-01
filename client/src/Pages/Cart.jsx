@@ -12,12 +12,12 @@ export const Cart = () => {
 
 
     useEffect(()=>{
-      axios.get(`http://localhost:8080/products/cart/${id}`)
-      .then((res)=>setData(res.data))
+      axios.get(`https://good-lime-perch-sock.cyclic.app/products/getproducts/${id}`)
+      .then((res)=>setData(res.data.product))
       .catch((err)=>console.log(err))
     },[id])
   return (
-    <Box mt={150} backgroundColor="#FDEFEC">
+    <Box mt={150} backgroundColor="#FDEFEC" >
         <Flex>
             <Box width="60%" border="1px solid red" >
                 <Box width="70%" margin="auto" border="1px solid blue">
@@ -51,7 +51,8 @@ export const Cart = () => {
                         <Text>Size: {data.size}</Text>
                         <Flex>
                             <Text>₹ {data.discounted_price}</Text>
-                            <Text textDecoration="line-through">₹ {data.strike_price}</Text>
+                            <Text textDecoration="line-through" ml={7} color="#FF3F6C">₹ {data.strike_price} </Text>
+                            <Text color="#FF3F6C" ml={3}>20% off</Text>
                         </Flex>
                         <Text>14 days return available</Text>
                     </Box>
@@ -104,7 +105,7 @@ export const Cart = () => {
                 <Box mt={6}>
                     <Flex justifyContent="space-between">
                     <Text>Total Amount</Text>
-                    <Text>₹ {data.discounted_price}-300</Text>
+                    <Text>₹ {data.discounted_price-300}</Text>
                     </Flex>
                 </Box>
                 <Button width="50%" margin="auto" left="30%" mt={8} backgroundColor="#FF3F6C" _hover={{backgroundColor: "#FF3F6C"}}>PLACE ORDER</Button>
