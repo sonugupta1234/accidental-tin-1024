@@ -14,9 +14,9 @@ import {
   PopoverContent,
   useColorModeValue,
   useDisclosure,
-  InputGroup,
-  InputLeftElement,
-  Input,
+  // InputGroup,
+  // InputLeftElement,
+  // Input,
   HStack,
   PopoverArrow,
   PopoverBody,
@@ -26,7 +26,7 @@ import {
   CloseIcon,
   ChevronDownIcon,
   ChevronRightIcon,
-  SearchIcon,
+  // SearchIcon,
 } from "@chakra-ui/icons";
 // import CWLOGO from "../assets/CWLOGO-1.png";
 
