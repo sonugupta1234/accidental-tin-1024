@@ -11,4 +11,11 @@ userRouter.post("/login",loginUser)
 // userRouter.get("/:id", getSingleUser)
 userRouter.get("/allusers", requireSignIn , isAdmin  ,getAllUser)
 userRouter.delete("/:id", requireSignIn , isAdmin,deleteUser)
+userRouter.get("/user-auth", requireSignIn, (req, res) => {
+    res.status(200).send({ ok: true });
+});
+  //protected Admin route auth
+userRouter.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
+    res.status(200).send({ ok: true });
+});
 module.exports=userRouter
