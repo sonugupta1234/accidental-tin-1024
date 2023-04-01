@@ -28,13 +28,13 @@ const ProductsCard = ({
             {title}
           </Text>
           <Flex alignItems={"center"} gap="10px">
-            <Text fontWeight={500}>Rs.{strike_price}</Text>
+            <Text fontWeight={500}>Rs.{discounted_price}</Text>
             <Text
               color={"gray"}
               fontSize={"11px"}
               textDecoration={"line-through"}
             >
-              Rs.{discounted_price}
+              Rs.{strike_price}
             </Text>{" "}
             <Text fontSize={"11px"} color={"red.200"}>
               {discount}
