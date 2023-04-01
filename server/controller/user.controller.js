@@ -4,8 +4,11 @@ const JWT=require("jsonwebtoken");
 const User=require("../model/user.model");
 const ErrorHandler = require("../utils/errorhandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
+ 
+
+// {===========================Registration==============================}
 exports.registerUser=async(req,res)=>{
-    try {
+      try{
         const { name, email, password, gender, number } = req.body;
         //validations
         if (!name) {
@@ -36,13 +39,13 @@ exports.registerUser=async(req,res)=>{
         //register user
         const hashedPassword = await hashPassword(password);
         //save
-        const user = await new User({
+        const user = await User.create({
           name,
           email,
           gender,
           number,
           password: hashedPassword,
-        }).save();
+        });
     
         res.status(201).send({
           success: true,
@@ -57,8 +60,10 @@ exports.registerUser=async(req,res)=>{
           error,
         });
       }
+      
 }
 
+// {===========================login==============================}
 exports.loginUser=async(req,res)=>{
     try {
         const { email, password } = req.body;
@@ -121,23 +126,23 @@ exports.getAllUser = catchAsyncErrors(async (req, res, next) => {
     users,
   });
 });
-//{===================== Get single user (admin)=====================}
-exports.getSingleUser = catchAsyncErrors(async (req, res, next) => {
-  const user = await User.findById(req.params.id);
+// {===================== Get single user (admin)=====================}
+// exports.getSingleUser = catchAsyncErrors(async (req, res, next) => {
+//   const user = await User.findById(req.params.id);
 
-  if (!user) {
-    return next(
-      new ErrorHandler(`User does not exist with Id: ${req.params.id}`)
-    );
-  }
+//   if (!user) {
+//     return next(
+//       new ErrorHandler(`User does not exist with Id: ${req.params.id}`)
+//     );
+//   }
 
-  res.status(200).json({
-    success: true,
-    user,
-  });
-});
+//   res.status(200).json({
+//     success: true,
+//     user,
+//   });
+// });
 
-// // {==========================Delete User --Admin=========================}
+// // // {==========================Delete User --Admin=========================}
 exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findByIdAndDelete(req.params.id);
 

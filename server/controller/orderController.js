@@ -4,11 +4,11 @@ const ErrorHandler = require("../utils/errorhandler");
 const Product=require("../model/productModel")
 
 exports.newOrder = catchAsyncErrors(async (req, res, next) => {
-  const { shippingInfo, orderItems } = req.body;
+  const { shippingInfo, cartItems } = req.body;
 
   const order = await Order.create({
     shippingInfo,
-    orderItems,
+    cartItems,
 
     user: req.user._id,
   });
@@ -44,4 +44,19 @@ exports.myOrders = catchAsyncErrors(async (req, res, next) => {
       orders,
     });
   });
+
+// {========================delete Order=======================================}
+exports.deleteOrder = catchAsyncErrors(async (req, res, next) => {
+  const order = await Order.findByIdAndDelete(req.params.id);
+
+  if (!order) {
+    return next(new ErrorHandler("Order not found with this Id", 404));
+  }
+
+  
+
+  res.status(200).json({
+    success: true,
+  });
+});  
   
