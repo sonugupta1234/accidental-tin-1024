@@ -187,6 +187,38 @@ const Products = () => {
                 Kids
               </Radio>
             </RadioGroup>
+
+              {/* =========== BRAND =============== */}
+              <Box
+              display={"flex"}
+              flexDirection="column"
+              borderWidth={"1px"}
+              p={"20px"}
+            >
+              <Text fontWeight={"500"} mb={"15px"}>
+                BRAND
+              </Text>
+      
+              <CheckboxGroup
+                colorScheme="blue"
+                value={brand}
+                onChange={handleBrand}
+              >
+                <Checkbox value={"KALINI"}> KALINI</Checkbox>
+                <Checkbox value={"Roadster"}> Roadster</Checkbox>
+                <Checkbox value={"H&M"}> H&M</Checkbox>
+                <Checkbox value={"HRX Hrithik Roshan"}> HRX</Checkbox>
+                <Checkbox value={"Pothys"}> Pothys</Checkbox>
+              <Checkbox value={"Mitera"}> Mitera</Checkbox>
+              <Checkbox value={"max"}> max</Checkbox>
+              <Checkbox value={"HERE&NOW"}> HERE&NOW</Checkbox>
+              <Checkbox value={"GRACIT"}> </Checkbox>
+
+              </CheckboxGroup>
+              <Text color={"red.400"} cursor={"pointer"}>
+                +3204 more
+              </Text>
+            </Box>
             {/* =================category================ */}
             <Box
               display={"flex"}
@@ -211,39 +243,7 @@ const Products = () => {
                 +81 more
               </Text>
             </Box>
-            {/* =========== BRAND =============== */}
-            <Box
-              display={"flex"}
-              flexDirection="column"
-              borderWidth={"1px"}
-              p={"20px"}
-            >
-              <Text fontWeight={"500"} mb={"15px"}>
-                BRAND
-              </Text>
-              {/* <CheckboxGroup colorScheme="blue" value={brand} onChange={handleBrand}></CheckboxGroup>
-              <Checkbox value={"KALINI"} > KALINI</Checkbox>
-              <Checkbox value={"Roadster"}> Roadster</Checkbox>
-              <Checkbox value={"H&M"}> H&M</Checkbox>
-              <Checkbox value={"Pothys"}> Pothys</Checkbox>
-              <Checkbox value={"Mitera"}> Mitera</Checkbox>
-              <Checkbox value={""}> max</Checkbox>
-              <Checkbox value={""}> HERE&NOW</Checkbox>
-              <Checkbox value={""}> GRACIT</Checkbox>
-              <CheckboxGroup/> */}
-              <CheckboxGroup
-                colorScheme="blue"
-                value={brand}
-                onChange={handleBrand}
-              >
-                <Checkbox value={"KALINI"}> KALINI</Checkbox>
-                <Checkbox value={"Roadster"}> Roadster</Checkbox>
-                <Checkbox value={"H&M"}> H&M</Checkbox>
-              </CheckboxGroup>
-              <Text color={"red.400"} cursor={"pointer"}>
-                +3204 more
-              </Text>
-            </Box>
+          
             {/* ====================PRICE======================== */}
             <Box
               display={"flex"}
