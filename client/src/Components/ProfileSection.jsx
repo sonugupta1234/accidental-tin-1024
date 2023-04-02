@@ -65,7 +65,9 @@ import { AuthContext } from "../Context/AuthContextProvider";
     //   }
       
     // };
-    const {logout}=useContext(AuthContext)
+    const {logout,isAuth}=useContext(AuthContext)
+    const data=localStorage.getItem("name")
+    const data1=localStorage.getItem("email")
     console.log(navname)
     return (
       <Flex justifyContent="center" mt={0}>
@@ -101,9 +103,9 @@ import { AuthContext } from "../Context/AuthContextProvider";
                   fontSize="md"
                   colorScheme={"pink"}
                 >
-                 {/* Hello, {isAuth ? currentUserData.name : "Welcome"} */}
+                 Hello, {isAuth ? data : "Welcome"}
                  
-                {navname ? "Hello, Sonu Gupta" : "Hello, Welcome"}
+                  {/* Hello {data} */}
                 </Button>
                 <Button
                   w="auto"
@@ -114,8 +116,8 @@ import { AuthContext } from "../Context/AuthContextProvider";
                   colorScheme="pink"
                   fontSize="sm"
                 >
-                  {/* {isAuth ? currentUserData.email : "To access account and orders"} */}
-                  To access account and orders
+                  {isAuth ? data1 : "To access account and orders"}
+                  {/* To access account and orders */}
                 </Button>
                 <Button
                   w="auto"

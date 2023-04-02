@@ -51,7 +51,7 @@ export const Cart = () => {
                     <Box >
                         <Heading>{data.brand}</Heading>
                         <Text>{data.title}</Text>
-                        <Text>Size: {data.size[2]}</Text>
+                        <Text>Size: {data.size[0]}</Text>
                         <Flex>
                             <Text>₹ {data.discounted_price}</Text>
                             <Text textDecoration="line-through" ml={7} color="#FF3F6C">₹ {data.strike_price} </Text>
