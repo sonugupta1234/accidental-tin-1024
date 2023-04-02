@@ -3,7 +3,7 @@ import {Box,Heading,Text,Flex,Button,Input, useToast} from "@chakra-ui/react"
 
 export const Payment = () => {
 
-    const [cash,setCash]=useState(false)
+    const [cash,setCash]=useState(true)
     const [card,setCard]=useState(false)
     const toast=useToast()
 
@@ -28,13 +28,13 @@ export const Payment = () => {
           <Box marginTop={50}>
             <Heading fontSize={'sm'}>Choose Payment Mode</Heading>
             <Flex>
-                <Box width="40%">
-                <Button onClick={handleSubmit1} color="#FF3F6C">Cash On Delivery(Cash/UPI)</Button>
-                <Button color="#FF3F6C" onClick={handleSubmit}>Credit/Debit Card</Button>
-                <Button color="#FF3F6C">PhonePe/Google Pay/BHIM UPI</Button>
-                <Button color="#FF3F6C">Paytm/Wallets</Button><br/>
-                <Button color="#FF3F6C">Net Banking</Button><br/>
-                <Button color="#FF3F6C">EMI/Pay Later</Button>
+                <Box width="40%" backgroundColor={'white'}>
+                <Button backgroundColor={'white'} border="1px solid #FF3F6C" mt={3} onClick={handleSubmit1} color="#FF3F6C">Cash On Delivery(Cash/UPI)</Button>
+                <Button backgroundColor={'white'} border="1px solid #FF3F6C" mt={3} color="#FF3F6C" onClick={handleSubmit}>Credit/Debit Card</Button>
+                <Button backgroundColor={'white'} border="1px solid #FF3F6C" mt={3} color="#FF3F6C">PhonePe/Google Pay/BHIM UPI</Button>
+                <Button backgroundColor={'white'} border="1px solid #FF3F6C" mt={3} color="#FF3F6C">Paytm/Wallets</Button><br/>
+                <Button backgroundColor={'white'} border="1px solid #FF3F6C" mt={3} color="#FF3F6C">Net Banking</Button><br/>
+                <Button backgroundColor={'white'} border="1px solid #FF3F6C" mt={3} color="#FF3F6C">EMI/Pay Later</Button>
                 </Box>
                 <Box width="60%">
                   {cash && 
