@@ -10,6 +10,7 @@ import { Payment } from '../Pages/Payment';
 import Products from '../Pages/Products/Products';
 
 import { SignUp } from '../Pages/SignUp';
+import SinglePage from '../Pages/DetailsPages/SinglePage';
 
 
 const AllRoutes = () => {
@@ -22,6 +23,7 @@ const AllRoutes = () => {
        <Route path="/register" element={<SignUp />} />
 
        <Route path="/cart/:id" element={<Cart />} />
+       <Route path="/detailsPage/:id" element={<SinglePage/>} />
 
        <Route path="/products" element={<Products/>} />
        <Route path="/cart" element={<Cart />} />
