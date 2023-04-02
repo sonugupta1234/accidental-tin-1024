@@ -29,11 +29,9 @@ return {type:PRODUCT_FAILURE}
 // };
 
 export const addProduct = (payload) => (dispatch) => {
-
     dispatch(productrequest())
      axios.post(`https://good-lime-perch-sock.cyclic.app/products/create`,payload).then(()=> {
-      // console.log(res.data);
-    //   console.log(1);
+      console.log(payload)
       dispatch(postproductssuccess())
     }).catch((err)=> {
       dispatch(productFailure())

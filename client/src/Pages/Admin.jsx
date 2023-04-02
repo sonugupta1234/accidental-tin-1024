@@ -5,12 +5,17 @@ import { addProduct } from '../redux/admin/ProductsReducer/action';
 import { useDispatch } from 'react-redux';
 // import {useDispatch} from "react-redux"
 
-const initialState={image:"",
+const initialState={
+  images:"",
   brand:"",
   title:"",
-  discounted_price:"",
-  strike_price:"",
-  discount:""
+  category:"",
+  discounted_price:0,
+  strike_price:320,
+  discount:"",
+  size:["x","m","l"],
+  rating: 5.2,
+  rating_count:"5k"
 }
 const Admin = () => {
   let [data,setData]=useState(initialState);
@@ -22,7 +27,7 @@ const Admin = () => {
       const {name,value}=e.target
 
       setData((prev)=> {
-        return {...prev,[name]:(name=="discounted_price" && name=="strike_price") ? +value:  value}
+        return {...prev,[name]:name=="discounted_price" ? +value:  value}
       })
     }
 
@@ -37,11 +42,13 @@ const Admin = () => {
     <Wrapper>
        <form onSubmit={(e)=>handleSubmit(e)}>
         <FormLabel>Image</FormLabel>
-        <Input type="url" placeholder='image' name="image" value={data.image} onChange={(e)=>handleChange(e)} />
+        <Input type="url" placeholder='image' name="images" value={data.images} onChange={(e)=>handleChange(e)} />
         <FormLabel>Brand</FormLabel>
         <Input type="text" name="brand" value={data.brand} onChange={(e)=>handleChange(e)}/>
         <FormLabel>Title</FormLabel>
         <Input type="text" name="title" value={data.title} onChange={(e)=>handleChange(e)}/>
+        <FormLabel>Category</FormLabel>
+        <Input type="text" name="category" value={data.category} onChange={(e)=>handleChange(e)}/>
         <FormLabel>Discounted Price</FormLabel>
         <Input type="number" name="discounted_price" value={data.discounted_price} onChange={(e)=>handleChange(e)}/>
         <FormLabel>Strike Price</FormLabel>
