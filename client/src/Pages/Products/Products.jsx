@@ -79,7 +79,7 @@ const Products = () => {
         _order: searchParams.get("_order"),
       },
     };
-    console.log("get", getProductParam);
+    // console.log("get", getProductParam);
     dispatch(getProducts(getProductParam));
   }, [searchParams, dispatch, pageNo,]);
 

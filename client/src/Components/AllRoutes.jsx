@@ -14,6 +14,7 @@ import { SignUp } from '../Pages/SignUp';
 import { PrivateRoutes } from './PrivateRoutes';
 
 import SinglePage from '../Pages/DetailsPages/SinglePage';
+import Admin from "../Pages/Admin"
 
 
 
@@ -25,7 +26,7 @@ const AllRoutes = () => {
      <Route path="/" element={<LandingPage/>} />
        <Route path="/login" element={<Login />} />
        <Route path="/register" element={<SignUp />} />
-
+        <Route path="/admin" element={<Admin/>} />
 
        <Route path="/cart/:id" element={<PrivateRoutes><Cart /></PrivateRoutes>} />
 
