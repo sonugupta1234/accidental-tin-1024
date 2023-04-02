@@ -28,8 +28,7 @@ import {
   ChevronRightIcon,
   // SearchIcon,
 } from "@chakra-ui/icons";
-// import CWLOGO from "../assets/CWLOGO-1.png";
-
+import favicon from "./favicon.png"
 import { NavLink } from "react-router-dom";
 import { HiOutlineHeart } from "react-icons/hi";
 import { RiHandbagLine } from "react-icons/ri";
@@ -69,6 +68,8 @@ export default function Navbar() {
         borderColor={useColorModeValue("gray.200", "gray.900")}
         align={"center"}
       >
+      
+
         <Flex
           flex={{ base: 1, md: "auto" }}
           ml={{ base: -2 }}
@@ -87,11 +88,12 @@ export default function Navbar() {
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", sm:'center',  md: "start" }} border={"0px solid black"} >
           <NavLink to='/' >
-          <Image
-            // src={CWLOGO}
-            w={{ base: "40%", sm: "40%", md: "40%", lg: "25%" }}
+            <Text fontSize={"xl"}  color='#BB1679' fontWeight="bold" textDecoration="underline" ><i>furor</i></Text>
+          {/* <Image
+            src={favicon }
+            w={{ base: "10%", sm: "10%", md: "10%", lg: "10%" }}
             mr={{sm:60, base:50,lg:0,md:0}}
-          />
+          /> */}
 </NavLink>
           <Flex
             display={{ base: "none", md: "none",lg:"flex" }}
