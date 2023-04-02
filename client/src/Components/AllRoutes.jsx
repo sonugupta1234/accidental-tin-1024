@@ -10,6 +10,7 @@ import { Payment } from '../Pages/Payment';
 import Products from '../Pages/Products/Products';
 
 import { SignUp } from '../Pages/SignUp';
+import { PrivateRoutes } from './PrivateRoutes';
 
 
 const AllRoutes = () => {
@@ -21,10 +22,10 @@ const AllRoutes = () => {
        <Route path="/login" element={<Login />} />
        <Route path="/register" element={<SignUp />} />
 
-       <Route path="/cart/:id" element={<Cart />} />
+       <Route path="/cart/:id" element={<PrivateRoutes><Cart /></PrivateRoutes>} />
 
        <Route path="/products" element={<Products/>} />
-       <Route path="/cart" element={<Cart />} />
+       
 
        <Route path="/checkout/address" element={<Checkout />} />
        <Route path="/checkout/payment" element={<Payment />} />
