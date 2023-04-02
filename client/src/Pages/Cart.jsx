@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import axios from "axios"
 import Navbar from "../Components/Navbar"
+import { Link } from 'react-router-dom'
 
 export const Cart = () => {
 
@@ -12,11 +13,11 @@ export const Cart = () => {
     const {id}=useParams()
 
 
-    useEffect(()=>{
-      axios.get(`https://good-lime-perch-sock.cyclic.app/products/getproducts/${id}`)
-      .then((res)=>setData(res.data.product))
-      .catch((err)=>console.log(err))
-    },[id])
+    // useEffect(()=>{
+    //   axios.get(`https://good-lime-perch-sock.cyclic.app/products/getproducts/${id}`)
+    //   .then((res)=>setData(res.data.product))
+    //   .catch((err)=>console.log(err))
+    // },[id])
   return (
     <>
     <Navbar />
@@ -45,16 +46,16 @@ export const Cart = () => {
                <Box mt={6}>
                  <Flex>
                     <Box  width="30%" >
-                        <Image width="100%" src={data.images} alt=""/>
+                        <Image width="100%" src="https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/7610386/2022/4/19/c6fe5c9f-9a2b-46c9-90cc-6479f7d8ea581650366004453HRXbyHrithikRoshanMenBlackSolidRapidDryRunningJoggers2.jpg" alt=""/>
                     </Box>
 
                     <Box >
-                        <Heading>{data.brand}</Heading>
-                        <Text>{data.title}</Text>
-                        <Text>Size: {data.size[0]}</Text>
+                        <Heading>Roadster</Heading>
+                        <Text>Shirt</Text>
+                        <Text>Size: 32</Text>
                         <Flex>
-                            <Text>₹ {data.discounted_price}</Text>
-                            <Text textDecoration="line-through" ml={7} color="#FF3F6C">₹ {data.strike_price} </Text>
+                            <Text>₹ 1000</Text>
+                            <Text textDecoration="line-through" ml={7} color="#FF3F6C">₹ 2500 </Text>
                             <Text color="#FF3F6C" ml={3}>20% off</Text>
                         </Flex>
                         <Text>14 days return available</Text>
@@ -90,7 +91,7 @@ export const Cart = () => {
                 <Box mt={6}>
                     <Flex justifyContent="space-between">
                     <Text>Total MRP</Text>
-                    <Text>₹ {data.discounted_price}</Text>
+                    <Text>₹ 1000</Text>
                     </Flex>
                 </Box>
                 <Box mt={6}>
@@ -108,10 +109,10 @@ export const Cart = () => {
                 <Box mt={6}>
                     <Flex justifyContent="space-between">
                     <Text>Total Amount</Text>
-                    <Text>₹ {data.discounted_price-300}</Text>
+                    <Text>₹ 700</Text>
                     </Flex>
                 </Box>
-                <Button width="50%" margin="auto" left="30%" mt={8} backgroundColor="#FF3F6C" _hover={{backgroundColor: "#FF3F6C"}}>PLACE ORDER</Button>
+                <Link to="/checkout/address"><Button width="50%" margin="auto" left="30%" mt={8} backgroundColor="#FF3F6C" _hover={{backgroundColor: "#FF3F6C"}}>PLACE ORDER</Button></Link>
               </Box>
             </Box>
         </Flex>

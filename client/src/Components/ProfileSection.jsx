@@ -68,7 +68,7 @@ import { AuthContext } from "../Context/AuthContextProvider";
     const {logout,isAuth}=useContext(AuthContext)
     const data=localStorage.getItem("name")
     const data1=localStorage.getItem("email")
-    console.log(navname)
+    console.log(isAuth)
     return (
       <Flex justifyContent="center" mt={0}>
         <Popover placement="bottom" isLazy>
