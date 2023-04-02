@@ -55,13 +55,13 @@ export const Checkout = () => {
                 <Box mt={6}>
                     <Flex justifyContent="space-between">
                     <Text>Total MRP</Text>
-                    <Text>₹ 664</Text>
+                    <Text>₹ 2500</Text>
                     </Flex>
                 </Box>
                 <Box mt={6}>
                     <Flex justifyContent="space-between">
                     <Text>Discount on MRP</Text>
-                    <Text>-₹ 300</Text>
+                    <Text>-₹ 1500</Text>
                     </Flex>
                 </Box>
                 <Box mt={6}>
@@ -73,7 +73,7 @@ export const Checkout = () => {
                 <Box mt={6}>
                     <Flex justifyContent="space-between">
                     <Text>Total Amount</Text>
-                    <Text>₹ 364</Text>
+                    <Text>₹ 1000</Text>
                     </Flex>
                 </Box>
                 

@@ -16,13 +16,13 @@ import {
 import Navbar from '../Components/Navbar'
 import ProfileSection from '../Components/ProfileSection'
 import { AuthContext } from '../Context/AuthContextProvider'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 
 export const Login = () => {
 
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
-    const {login}=useContext(AuthContext)
+    const {login,isAuth}=useContext(AuthContext)
     // const [navname,setNavName]=useState(false)
     const navigate=useNavigate()
 
@@ -36,8 +36,12 @@ export const Login = () => {
     }
 
 
-    const handleSubmit=()=>{
 
+
+    const handleSubmit=()=>{
+        // if(email==="admin@gmail.com"){
+        //   return <Navigate to="/"
+        // }
         axios.post("https://good-lime-perch-sock.cyclic.app/user/login", payload)
         .then((res)=>{ toast({
           title: 'Login Sucessfull.',
@@ -51,9 +55,12 @@ export const Login = () => {
         localStorage.setItem("name",res.data.user.name)
         localStorage.setItem("email",res.data.user.email)
         login()
+        
         return navigate(location.state, {replace: true})
 
       }
+
+      
         
         // console.log(res.data)
         )
@@ -67,6 +74,11 @@ export const Login = () => {
         }))
   
          
+      }
+
+
+      if(isAuth){
+        return <Navigate to="/"/>
       }
   return (
     <Box  backgroundColor="#FDEFEC" height="600px">
