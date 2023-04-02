@@ -13,6 +13,7 @@ import {
   } from '@chakra-ui/react'
 import { useState } from 'react'
 import axios from "axios"
+import { Link } from 'react-router-dom'
 
 
 export const SignUp = () => {
@@ -20,7 +21,8 @@ export const SignUp = () => {
     const [name,setName]=useState("")
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
-    const [number,setNumber]=useState("")
+    const [number,setNumber]=useState(0)
+    const [gender,setGender]=useState("")
     const toast=useToast()
     const toast1=useToast()
     
@@ -28,11 +30,14 @@ export const SignUp = () => {
         name: name,
         email: email,
         password: password,
+        gender:gender,
         number: number
       }
 
-    const handleSubmit=async()=>{
+      
 
+    const handleSubmit=async()=>{
+      // console.log(payload)
       axios.post("https://good-lime-perch-sock.cyclic.app/user/register", payload)
       .then((res)=> toast({
         title: 'Account created.',
@@ -64,15 +69,19 @@ export const SignUp = () => {
       <Input placeholder='Enter Name' onChange={(e)=>setName(e.target.value)}/>
       <FormLabel>Email</FormLabel>
       <Input type="email" placeholder='Enter Email' onChange={(e)=>setEmail(e.target.value)}/>
+     
+      <FormLabel>Password</FormLabel>
+      <Input type="password" placeholder='Enter Password' onChange={(e)=>setPassword(e.target.value)}/>
+      <FormLabel>Gender</FormLabel>
+      <Input type="text" placeholder='Enter Gender' onChange={(e)=>setGender(e.target.value)}/>
       <FormLabel>Phone</FormLabel>
-     <InputGroup>
+      <InputGroup>
      
       <InputLeftAddon children='+91' />
       <Input type='number' placeholder='Enter number' onChange={(e)=>setNumber(e.target.value)}/>
      </InputGroup>
-     <FormLabel>Password</FormLabel>
-      <Input type="password" placeholder='Enter Password' onChange={(e)=>setPassword(e.target.value)}/>
-      <Button mt={6} onClick={handleSubmit} width="100%" backgroundColor="#FF3F6C" _hover={{backgroundColor: "#FF3F6C"}}>Submit</Button>
+     
+      <Link to="/login"><Button mt={6} onClick={handleSubmit} width="100%" backgroundColor="#FF3F6C" _hover={{backgroundColor: "#FF3F6C"}}>Submit</Button></Link>
     </FormControl>
   </Box>
   </Box>

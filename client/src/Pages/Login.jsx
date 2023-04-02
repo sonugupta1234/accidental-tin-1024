@@ -16,6 +16,7 @@ import {
 import Navbar from '../Components/Navbar'
 import ProfileSection from '../Components/ProfileSection'
 import { AuthContext } from '../Context/AuthContextProvider'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export const Login = () => {
 
@@ -23,9 +24,11 @@ export const Login = () => {
     const [password,setPassword]=useState("")
     const {login}=useContext(AuthContext)
     // const [navname,setNavName]=useState(false)
+    const navigate=useNavigate()
 
     const toast=useToast()
     const toast1=useToast()
+    const location=useLocation()
 
     const payload={
         email: email,
@@ -39,15 +42,20 @@ export const Login = () => {
         .then((res)=>{ toast({
           title: 'Login Sucessfull.',
           position: 'top',
-          description: `Logged in as ${res.data.name}`,
+          description: `Logged in as ${res.data.user.name}`,
           status: 'success',
           duration: 5000,
           isClosable: true,
         })
-        localStorage.setItem("name",res.data.name)
+        localStorage.setItem("token",res.data.token)
+        localStorage.setItem("name",res.data.user.name)
+        localStorage.setItem("email",res.data.user.email)
         login()
+        return navigate(location.state, {replace: true})
+
+      }
         
-        console.log(res.data)}
+        // console.log(res.data)
         )
         .catch((error)=> toast1({
           title: ' Error ',
@@ -71,7 +79,7 @@ export const Login = () => {
       <FormLabel>Password</FormLabel>
       <Input type="password" placeholder='Enter Password' onChange={(e)=>setPassword(e.target.value)}/>
       <Button mt={7} onClick={handleSubmit} width="100%" backgroundColor="#FF3F6C" _hover={{backgroundColor: "#FF3F6C"}}>Submit</Button>
-      {/* /{navname && <ProfileSection navname={navname} />} */}
+      
     </FormControl>
   </Box>
   </Box>
