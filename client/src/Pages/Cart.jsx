@@ -4,6 +4,7 @@ import {CiDeliveryTruck, CiShoppingTag} from "react-icons/ci"
 import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import axios from "axios"
+import Navbar from "../Components/Navbar"
 
 export const Cart = () => {
 
@@ -17,10 +18,12 @@ export const Cart = () => {
       .catch((err)=>console.log(err))
     },[id])
   return (
-    <Box mt={150} backgroundColor="#FDEFEC" >
+    <>
+    <Navbar />
+    <Box mt={70}  >
         <Flex>
-            <Box width="60%" border="1px solid red" >
-                <Box width="70%" margin="auto" border="1px solid blue">
+            <Box width="60%"  >
+                <Box width="70%" margin="auto" >
                 <Flex justifyContent="space-between">
               <Text>Check delivery time & services</Text>
               
@@ -39,16 +42,16 @@ export const Cart = () => {
                 </Flex>
                </Box>
 
-               <Box>
+               <Box mt={6}>
                  <Flex>
-                    <Box>
-                        <Image src={data.images} alt=""/>
+                    <Box  width="30%" >
+                        <Image width="100%" src={data.images} alt=""/>
                     </Box>
 
-                    <Box>
+                    <Box >
                         <Heading>{data.brand}</Heading>
                         <Text>{data.title}</Text>
-                        <Text>Size: {data.size}</Text>
+                        <Text>Size: {data.size[2]}</Text>
                         <Flex>
                             <Text>₹ {data.discounted_price}</Text>
                             <Text textDecoration="line-through" ml={7} color="#FF3F6C">₹ {data.strike_price} </Text>
@@ -61,7 +64,7 @@ export const Cart = () => {
 
                </Box>
             </Box>
-            <Box width="40%" border="1px solid green">
+            <Box width="40%" >
               <Text>COUPONS</Text>
               <Box mt={10}>
                 <Flex justifyContent="space-between">
@@ -113,5 +116,6 @@ export const Cart = () => {
             </Box>
         </Flex>
     </Box>
+    </>
   )
 }
