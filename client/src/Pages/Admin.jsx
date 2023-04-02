@@ -39,7 +39,7 @@ const Admin = () => {
       console.log(data);
   }
   return (
-    <Wrapper>
+    <Wrapper mt="50px" >
        <form onSubmit={(e)=>handleSubmit(e)}>
         <FormLabel>Image</FormLabel>
         <Input type="url" placeholder='image' name="images" value={data.images} onChange={(e)=>handleChange(e)} />
