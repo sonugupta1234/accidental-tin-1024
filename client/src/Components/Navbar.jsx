@@ -29,7 +29,6 @@ import {
   // SearchIcon,
 } from "@chakra-ui/icons";
 // import CWLOGO from "../assets/CWLOGO-1.png";
-
 import { NavLink } from "react-router-dom";
 import { HiOutlineHeart } from "react-icons/hi";
 import { RiHandbagLine } from "react-icons/ri";
@@ -69,6 +68,8 @@ export default function Navbar() {
         borderColor={useColorModeValue("gray.200", "gray.900")}
         align={"center"}
       >
+      
+
         <Flex
           flex={{ base: 1, md: "auto" }}
           ml={{ base: -2 }}

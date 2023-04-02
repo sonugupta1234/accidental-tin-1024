@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Image, Text} from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { StarIcon } from "@chakra-ui/icons";
 import {AiOutlineHeart} from "react-icons/ai"
 import React from "react";
@@ -14,6 +14,12 @@ const ProductsCard = ({
   discount,
   discounted_price,
 }) => {
+  const navigate=useNavigate()
+
+const handledetailsPage=()=>{
+  navigate("/detailsPage/:id")
+}
+  // console.log("id",id,brand)
   return (
     <Box
       _hover={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
@@ -21,7 +27,8 @@ const ProductsCard = ({
       pb='10px'
     >
       <Link to="">
-        <Image src={images} w="100%" borderRadius={"5px 5px 0 0"} />
+       <Box onClick={handledetailsPage}> <Image src={images} w="100%" borderRadius={"5px 5px 0 0"} /></Box>
+
         <Box paddingLeft={"7px"}>
           <Text fontWeight={500}>{brand}</Text>
           <Text color={"gray"} fontSize={"13px"}>

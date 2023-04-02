@@ -2,6 +2,7 @@ import {
   Box,
   Checkbox,
   CheckboxGroup,
+  Flex,
   Input,
   Radio,
   RadioGroup,
@@ -9,12 +10,13 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import  Spinnerdiv from './Spinnerdiv'
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/prducts/action";
 import Pagination from "./Pagination";
 import ProductsCard from "./ProductsCard";
-import { useSearchParams } from "react-router-dom";
+import {useSearchParams } from "react-router-dom";
 // import ProductsCard from "./ProductsCard";
 
 const Products = () => {
@@ -23,6 +25,7 @@ const Products = () => {
   const initBrandValues = searchParams.getAll("brand");
   const initSortValue = searchParams.getAll("sort");
   const initOrder = searchParams.getAll("order");
+
 
   const [filterValues, setFilterValues] = useState(initFilterValues);
   const [brand, setBrand] = useState(initBrandValues || []);
@@ -78,7 +81,7 @@ const Products = () => {
     };
     console.log("get", getProductParam);
     dispatch(getProducts(getProductParam));
-  }, [searchParams, dispatch, pageNo]);
+  }, [searchParams, dispatch, pageNo,]);
 
   const handleFilterChange = (val) => {
     if (val === "All") {
@@ -354,7 +357,8 @@ const Products = () => {
               }}
             >
               {isLoding ? (
-                <h1>Loading....</h1>
+       <Spinnerdiv/>
+
               ) : isError ? (
                 <h1>Something went wrong????</h1>
               ) : (
