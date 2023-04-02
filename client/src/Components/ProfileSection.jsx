@@ -26,12 +26,14 @@ import {
   import { CgProfile } from "react-icons/cg";
   import { RiShutDownLine, RiCouponLine } from "react-icons/ri";
   import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../Context/AuthContextProvider";
 //   import { useEffect } from "react";
 //   import { useDispatch, useSelector } from "react-redux";
 //   import { getCurrentUserData, getUsersListData, updateCurrentUserData, updateUsersListData } from "../Redux/Admin/Admin.action";
 //   import { deleteCartData, fetchCartData } from "../Redux/Cart/Cart.action";
   
-  export default function ProfileSection() {
+  export default function ProfileSection({navname}) {
     // const dispatch = useDispatch();
     // const {usersListData,currentUserData} = useSelector((store)=>store.adminManager);
     // const { cartData } = useSelector((store) => store.cart);
@@ -63,6 +65,10 @@ import {
     //   }
       
     // };
+    const {logout,isAuth}=useContext(AuthContext)
+    const data=localStorage.getItem("name")
+    const data1=localStorage.getItem("email")
+    console.log(navname)
     return (
       <Flex justifyContent="center" mt={0}>
         <Popover placement="bottom" isLazy>
@@ -97,8 +103,9 @@ import {
                   fontSize="md"
                   colorScheme={"pink"}
                 >
-                 {/* Hello, {isAuth ? currentUserData.name : "Welcome"} */}
-                 Hello, Welcome
+                 Hello, {isAuth ? data : "Welcome"}
+                 
+                  {/* Hello {data} */}
                 </Button>
                 <Button
                   w="auto"
@@ -109,8 +116,8 @@ import {
                   colorScheme="pink"
                   fontSize="sm"
                 >
-                  {/* {isAuth ? currentUserData.email : "To access account and orders"} */}
-                  To access account and orders
+                  {isAuth ? data1 : "To access account and orders"}
+                  {/* To access account and orders */}
                 </Button>
                 <Button
                   w="auto"
@@ -218,7 +225,7 @@ import {
                   colorScheme="red"
                   fontSize="sm"
                 //   isDisabled={!isAuth}
-                //   onClick={handleLogout}
+                   onClick={logout}
                 >
                   Logout
                 </Button>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react'
 import axios from "axios"
 import {
@@ -13,14 +13,22 @@ import {
     useToast,
     Image
   } from '@chakra-ui/react'
+import Navbar from '../Components/Navbar'
+import ProfileSection from '../Components/ProfileSection'
+import { AuthContext } from '../Context/AuthContextProvider'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export const Login = () => {
 
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
+    const {login}=useContext(AuthContext)
+    // const [navname,setNavName]=useState(false)
+    const navigate=useNavigate()
 
     const toast=useToast()
     const toast1=useToast()
+    const location=useLocation()
 
     const payload={
         email: email,
@@ -31,14 +39,24 @@ export const Login = () => {
     const handleSubmit=()=>{
 
         axios.post("https://good-lime-perch-sock.cyclic.app/user/login", payload)
-        .then((res)=> toast({
-          title: 'Sucessfull.',
+        .then((res)=>{ toast({
+          title: 'Login Sucessfull.',
           position: 'top',
-          description: "Login Sucessfull",
+          description: `Logged in as ${res.data.user.name}`,
           status: 'success',
           duration: 5000,
           isClosable: true,
-        }))
+        })
+        localStorage.setItem("token",res.data.token)
+        localStorage.setItem("name",res.data.user.name)
+        localStorage.setItem("email",res.data.user.email)
+        login()
+        return navigate(location.state, {replace: true})
+
+      }
+        
+        // console.log(res.data)
+        )
         .catch((error)=> toast1({
           title: ' Error ',
           position: 'top',
@@ -61,6 +79,7 @@ export const Login = () => {
       <FormLabel>Password</FormLabel>
       <Input type="password" placeholder='Enter Password' onChange={(e)=>setPassword(e.target.value)}/>
       <Button mt={7} onClick={handleSubmit} width="100%" backgroundColor="#FF3F6C" _hover={{backgroundColor: "#FF3F6C"}}>Submit</Button>
+      
     </FormControl>
   </Box>
   </Box>

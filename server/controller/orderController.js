@@ -24,6 +24,7 @@ exports.getSingleOrder = catchAsyncErrors(async (req, res, next) => {
       "user",
       "name email"
     );
+    
   
     if (!order) {
       return next(new ErrorHandler("Order not found with this Id", 404));
@@ -45,7 +46,7 @@ exports.myOrders = catchAsyncErrors(async (req, res, next) => {
     });
   });
 
-// {========================delete Order=======================================}
+// {========================Delete Order=======================================}
 exports.deleteOrder = catchAsyncErrors(async (req, res, next) => {
   const order = await Order.findByIdAndDelete(req.params.id);
 
