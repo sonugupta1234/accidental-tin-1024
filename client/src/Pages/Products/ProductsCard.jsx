@@ -1,10 +1,11 @@
 import { Box, Button, Flex, Image, Text} from "@chakra-ui/react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { StarIcon } from "@chakra-ui/icons";
 import {AiOutlineHeart} from "react-icons/ai"
 import React from "react";
 
 const ProductsCard = ({
+  _id,
   images,
   title,
   brand,
@@ -16,18 +17,19 @@ const ProductsCard = ({
 }) => {
   const navigate=useNavigate()
 
-const handledetailsPage=()=>{
-  navigate("/detailsPage/:id")
+const handledetailsPage=(id)=>{
+  navigate(`/products/${id}`)
+  console.log("id",id)
 }
-  // console.log("id",id,brand)
+  
   return (
     <Box
       _hover={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
       borderRadius={"5px"}
       pb='10px'
     >
-      <Link to="">
-       <Box onClick={handledetailsPage}> <Image src={images} w="100%" borderRadius={"5px 5px 0 0"} /></Box>
+      {/* <Link to=""> */}
+       <Box onClick={()=>handledetailsPage(_id)}> <Image src={images} w="100%" borderRadius={"5px 5px 0 0"} /></Box>
 
         <Box paddingLeft={"7px"}>
           <Text fontWeight={500}>{brand}</Text>
@@ -62,7 +64,7 @@ const handledetailsPage=()=>{
           </Flex>
           <Button bgColor={'pink'} borderRadius="2px" w={'96%'}  mt='5px' gap='10px' fontSize={'13px'}><AiOutlineHeart size="18px"/>WISHLIST</Button>
         </Box>
-      </Link>
+      {/* </Link> */}
     </Box>
   );
 };

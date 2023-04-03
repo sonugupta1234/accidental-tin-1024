@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {Box,Heading,Text,Flex,Button,Input, useToast} from "@chakra-ui/react"
+import {Link} from "react-router-dom"
 
 export const Payment = () => {
 
@@ -42,14 +43,14 @@ export const Payment = () => {
                     <Heading fontSize={'sm'}>Cash On Delivery (Cash/UPI)</Heading>
                     <Button mt={6}>56533</Button>
                     <Input placeholder="Enter code shown in above image" mt={6}/>
-                    <Button width="100%" backgroundColor="#FF3F6C" mt={10} onClick={()=>toast({
+                    <Link to="/"><Button width="100%" backgroundColor="#FF3F6C" mt={10} onClick={()=>toast({
                   title: 'Order Placed',
                   position: 'top',
                   description: "We've sent confirmation message to your mail",
                  status: 'success',
-                 duration: 5000,
+                 duration: 3000,
                  isClosable: true,
-      })}>PLACE ORDER</Button>
+      })}>PLACE ORDER</Button></Link>
                   </>
                   }
                   {card && 
