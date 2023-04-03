@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import React, { useState } from 'react';
 import { addProduct } from '../redux/admin/ProductsReducer/action';
 import { useDispatch } from 'react-redux';
+import AdminMain from './AdminMain';
 // import {useDispatch} from "react-redux"
 
 const initialState={
@@ -27,7 +28,7 @@ const Admin = () => {
       const {name,value}=e.target
 
       setData((prev)=> {
-        return {...prev,[name]:name=="discounted_price" ? +value:  value}
+        return {...prev,[name]:name==="discounted_price" ? +value:  value}
       })
     }
 
@@ -39,6 +40,11 @@ const Admin = () => {
       console.log(data);
   }
   return (
+    <>
+    <div>
+      <AdminMain/>
+      </div>
+    <Wrapper>
     <Wrapper mt="50px" >
        <form onSubmit={(e)=>handleSubmit(e)}>
         <FormLabel>Image</FormLabel>
@@ -58,6 +64,7 @@ const Admin = () => {
        <Button type="submit">Add Product</Button>
        </form>
     </Wrapper>
+      </>
   )
 }
 

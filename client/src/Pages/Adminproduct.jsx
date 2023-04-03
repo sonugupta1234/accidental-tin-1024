@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from "axios"
+import AdminMain from './AdminMain'
 
 const Adminproduct = () => {
   const [data,setData]=useState([])
@@ -29,6 +30,10 @@ const Adminproduct = () => {
   }
 
   return (
+    <>
+    <div>
+      <AdminMain/>
+    </div>
     <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",width:"90%",margin:"auto"}}>
       {data.map((el)=> (
         <div key={el._id} style={{border:"1px solid grey",margin:"5px"}} >
@@ -41,6 +46,7 @@ const Adminproduct = () => {
         </div>
       ))}
     </div>
+      </>
   )
 }
 
