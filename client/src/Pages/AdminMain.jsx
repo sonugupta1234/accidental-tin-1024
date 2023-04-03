@@ -17,7 +17,7 @@ const links = [
         alignItems: "center",
         justifyContent: "space-evenly",
         height:"60px",
-        // backgroundColor:"greenyellow"
+        backgroundColor:"rgba(202,236,237,255)"
       }}>
          {links.map((link) => (
         <NavLink
