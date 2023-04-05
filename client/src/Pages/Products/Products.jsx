@@ -10,13 +10,13 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import  Spinnerdiv from './Spinnerdiv'
+import Spinnerdiv from "./Spinnerdiv";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/prducts/action";
 import Pagination from "./Pagination";
 import ProductsCard from "./ProductsCard";
-import {useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 // import ProductsCard from "./ProductsCard";
 
 const Products = () => {
@@ -26,7 +26,6 @@ const Products = () => {
   const initSortValue = searchParams.getAll("sort");
   const initOrder = searchParams.getAll("order");
 
-
   const [filterValues, setFilterValues] = useState(initFilterValues);
   const [brand, setBrand] = useState(initBrandValues || []);
   const [sortValue, setSortValue] = useState(initSortValue);
@@ -34,8 +33,6 @@ const Products = () => {
 
   const [pageNo, setPageNo] = useState(1);
 
-  // const { isOpen, onOpen, onClose } = useDisclosure()
-  // const btnRef = useRef()
 
   const { product, isLoding, isError } = useSelector(
     (store) => store.productReducer
@@ -81,7 +78,7 @@ const Products = () => {
     };
     // console.log("get", getProductParam);
     dispatch(getProducts(getProductParam));
-  }, [searchParams, dispatch, pageNo,]);
+  }, [searchParams, dispatch, pageNo]);
 
   const handleFilterChange = (val) => {
     if (val === "All") {
@@ -97,15 +94,15 @@ const Products = () => {
     setBrand(val);
   };
 
-  const handleClear = () => {
-    setFilterValues([]);
-    // dispatch(getMensData());
-    // onClose();
-  };
+  // const handleClear = () => {
+  // setFilterValues([]);
+  // dispatch(getMensData());
+  // onClose();
+  // };
 
-  const handlePage = (val) => {
-    setPageNo((prev) => prev + val);
-  };
+  // const handlePage = (val) => {
+  //   setPageNo((prev) => prev + val);
+  // };
 
   // console.log("loading",loadingMen,"error",error);
 
@@ -128,15 +125,19 @@ const Products = () => {
             <Select
               w={{ base: "50%", md: "24%", lg: "15%" }}
               borderRadius="0px"
+              placeholder="All"
+              value={sortValue}
+              onChange={(e) => setSortValue(e.target.value)}
             >
-              <option value="">Sort by:-</option>
               <option value="">Recommended</option>
-              <option value="">What,s New</option>
+              <option value="rating_countLTH">Reviews: Low To High</option>
+              <option value="rating_countHTL">Reviews: High To Low</option>
+              <option value="discounted_priceLTH">Price: Low to High</option>
+              <option value="discounted_priceHTL">Price: Hight to Low</option>
+              <option value="discount">Better Discount</option>
+              <option value="rating">Customer Rating</option>
+              <option value="">What,s New</option>  
               <option value="">Popularity</option>
-              <option value="">Better Discount</option>
-              <option value="">Price: Hight to Low</option>
-              <option value="">Price: Low to High</option>
-              <option value="">Customer Rating</option>
             </Select>
           </Box>
         </Box>
@@ -158,38 +159,22 @@ const Products = () => {
               value={filterValues}
               onChange={handleFilterChange}
             >
-              <Radio
-                m={"5px"}
-                name="category"
-                value="All"
-              >
+              <Radio m={"5px"} name="category" value="All">
                 All
               </Radio>
-              <Radio
-                m={"5px"}
-                name="category"
-                value="Mens"
-              >
+              <Radio m={"5px"} name="category" value="Mens">
                 Men
               </Radio>
-              <Radio
-                m={"5px"}
-                name="category"
-                value="Womens"
-              >
+              <Radio m={"5px"} name="category" value="Womens">
                 Women
               </Radio>
-              <Radio
-                m={"5px"}
-                name="category"
-                value="Child"
-              >
+              <Radio m={"5px"} name="category" value="Child">
                 Kids
               </Radio>
             </RadioGroup>
 
-              {/* =========== BRAND =============== */}
-              <Box
+            {/* =========== BRAND =============== */}
+            <Box
               display={"flex"}
               flexDirection="column"
               borderWidth={"1px"}
@@ -198,7 +183,7 @@ const Products = () => {
               <Text fontWeight={"500"} mb={"15px"}>
                 BRAND
               </Text>
-      
+
               <CheckboxGroup
                 colorScheme="blue"
                 value={brand}
@@ -209,11 +194,10 @@ const Products = () => {
                 <Checkbox value={"H&M"}> H&M</Checkbox>
                 <Checkbox value={"HRX Hrithik Roshan"}> HRX</Checkbox>
                 <Checkbox value={"Pothys"}> Pothys</Checkbox>
-              <Checkbox value={"Mitera"}> Mitera</Checkbox>
-              <Checkbox value={"max"}> max</Checkbox>
-              <Checkbox value={"HERE&NOW"}> HERE&NOW</Checkbox>
-              <Checkbox value={"GRACIT"}> </Checkbox>
-
+                <Checkbox value={"Mitera"}> Mitera</Checkbox>
+                <Checkbox value={"max"}> max</Checkbox>
+                <Checkbox value={"HERE&NOW"}> HERE&NOW</Checkbox>
+                <Checkbox value={"GRACIT"}> </Checkbox>
               </CheckboxGroup>
               <Text color={"red.400"} cursor={"pointer"}>
                 +3204 more
@@ -243,7 +227,7 @@ const Products = () => {
                 +81 more
               </Text>
             </Box>
-          
+
             {/* ====================PRICE======================== */}
             <Box
               display={"flex"}
@@ -357,8 +341,7 @@ const Products = () => {
               }}
             >
               {isLoding ? (
-       <Spinnerdiv/>
-
+                <Spinnerdiv />
               ) : isError ? (
                 <h1>Something went wrong????</h1>
               ) : (

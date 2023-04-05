@@ -3,6 +3,9 @@ import {
   GET_PRODUCTS_FAILURE,
   GET_PRODUCTS_REQUEST,
   GET_PRODUCTS_SUCCESS,
+  SORTING_FAILURE,
+  SORTING_REQUEST,
+  SORTING_SUCCESS,
 } from "./actionType";
 
 const getProductRequestAction = () => {
@@ -27,15 +30,13 @@ export const getProducts = (params) =>async (dispatch) => {
   }
 }
 
+const sortingRE=()=>{
+  return {type:SORTING_REQUEST}; 
+}
+ const sortingSU=(paylaod)=>{
+  return {type:SORTING_SUCCESS,paylaod:paylaod}
+ }
 
-
-// axios
-// .get(`https://good-lime-perch-sock.cyclic.app/products/getproducts`,params)
-// .then((res) => {
-//   console.log(res)
-//   dispatch(getProductSuccessAction(res.data));
-// })
-
-// .catch((err) => {
-//   dispatch(getProductFailureAction);
-// });
+ const sortingFE=()=>{
+return {type:SORTING_FAILURE}
+ }
