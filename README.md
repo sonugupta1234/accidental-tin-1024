@@ -37,6 +37,7 @@
 13. to delete item from cart:- https://good-lime-perch-sock.cyclic.app/cart/id
 
 
+live link: https://client-virid-sigma.vercel.app/
 
 
 
